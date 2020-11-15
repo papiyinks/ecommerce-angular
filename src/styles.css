@@ -1,1 +1,83 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800;900&display=swap');
+
+html, body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.junbo-bg {
+  height: unset;
+  margin-bottom: 0;
+  margin-top: 35px;
+  background: none;
+}
+
+.caption-text {
+  font-weight: 800;
+  font-size: 36px;
+  color: #202028;
+}
+
+.caption-para {
+  font-size: 21px;
+  margin-top: 1rem;
+  color: #202028;
+}
+
+.auth-cont {
+  margin-top: 70px;
+  padding: 0 12px;
+}
+
+.auth-text {
+  font-weight: 600;
+  font-size: 36px;
+  color: #202028;
+  margin-bottom: 30px;
+}
+
+
+@media only screen and (min-width: 768px) {
+  .junbo-bg {
+    margin-top: 100px;
+  }
+
+  .caption-cont {
+    width: 100%;
+    text-align: center;
+  }
+
+  .caption-text {
+    font-size: 3rem;
+  }
+
+  .caption-para {
+    font-size: 24px;
+  }
+
+  .auth-cont {
+    width: 600px;
+    margin: 0 auto;
+    margin-top: 100px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .caption-cont {
+    width: 60%;
+    text-align: left;
+  }
+
+  .caption-right {
+    padding-left: 1.25rem;
+    width: 40%;
+  }
+
+  .auth-cont {
+    width: 768px;
+    margin: 0 auto;
+    margin-top: 120px;
+    padding: 0;
+  }
+}
+

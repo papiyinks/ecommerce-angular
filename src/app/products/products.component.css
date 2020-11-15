@@ -1,0 +1,14 @@
+.prod-cont {
+  margin-top: 51px;
+}
+
+.prod-cart-button {
+  cursor: pointer;
+  color: #5C5BB3
+}
+
+@media only screen and (min-width: 768px) {
+  .prod-cont {
+    margin-top: 90px;
+  }
+}

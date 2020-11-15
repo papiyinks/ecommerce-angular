@@ -1,0 +1,20 @@
+.cart-pics {
+  width: 200px;
+  object-fit: contain;
+}
+
+.cart-but-cont {
+  padding: 2.4rem 0
+}
+.cart-but {
+  width: 60px;
+}
+
+.cart-prod-cont {
+  padding: 30px;
+}
+
+.cart-total-text {
+  font-size: 29px;
+  font-weight: 700;
+}

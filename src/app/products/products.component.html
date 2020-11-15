@@ -1,0 +1,42 @@
+<div>
+  <div class="junbo-bg">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-md-center">
+        <div class="caption-cont">
+          <h1 class="caption-text">Find your desired product</h1>
+          <p class="caption-para">To add new product, Please Register.</p>
+          <div>
+            <a routerLink="/products/new">
+              <button type="button" class="btn btn-primary">Add New Product</button>
+            </a>
+          </div>
+        </div>
+        <div class="d-none d-xl-block caption-right">
+          <img src="https://dev.warehousegig.com/images/hero/hero.png" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container prod-cont">
+    <div class="row">
+      <div *ngFor="let product of products; let i =index;" class="card border-0 col-md-4 col-lg-3 col-12 mb-5" style="width: 12rem;">
+        <a routerLink="/products/{{product.id}}">
+          <img src="{{product.imageUrl}}" class="card-img-top" alt="...">
+        </a>
+        <div class="card-body border border-top-0">
+          <h5 class="card-title text-center text-info">
+            <a routerLink="/products/{{product.id}}">{{ product.name }}</a>
+          </h5>
+          <div class="my-4 d-flex justify-content-between">
+            <span>₦ {{ product.price }}</span>
+            <a class="prod-cart-button" (click)="addProductToCart(product)">
+              <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-cart-dash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM4 14a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm7 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM6.5 7a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
