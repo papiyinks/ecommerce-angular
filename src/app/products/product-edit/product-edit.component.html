@@ -2,9 +2,6 @@
   <div *ngIf="isLoading" style="text-align: center; padding-top: 80px;">
     <app-loading-spinner></app-loading-spinner>
   </div>
-  <!-- <div class="alert alert-danger" role="alert" *ngIf="error">
-    {{ error }}
-  </div> -->
   <div *ngIf="!isLoading">
     <h1 class="auth-text">Edit A Product</h1>
     <form #editForm="ngForm" (ngSubmit)="onSubmit(editForm)">

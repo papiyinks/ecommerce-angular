@@ -1,30 +1,30 @@
-import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Subscription, Observable } from 'rxjs';
-import { CookieService } from 'ngx-cookie-service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  templateUrl: './header.component.html'
 })
-export class HeaderComponent implements OnInit {
-  currentToken: Observable<Array<any>>;
+export class HeaderComponent implements OnInit, OnDestroy {
   isAuthenticated = false;
+  public userSub: Subscription;
 
-  constructor(private cookieService: CookieService, private store: Store) {
+  constructor(private authService: AuthService) {
   }
 
   ngOnInit(): void {
-    // this.currentToken = this.store.select(store => store.authList.token);
-    const user = this.cookieService.get('userId');
-    if (user) {
-      this.isAuthenticated = true;
-    }
+    this.userSub = this.authService.user.subscribe(user => {
+      this.isAuthenticated = !!user;
+    });
   }
 
   onLogout() {
-    this.cookieService.delete('token');
-    this.cookieService.delete('userId');
+    this.authService.logout();
+  }
+
+  ngOnDestroy() {
+    this.userSub.unsubscribe();
   }
 }

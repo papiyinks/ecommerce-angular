@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Subscription, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import * as cartActions from './store/cart.action';
 
@@ -13,6 +13,7 @@ export class CartComponent implements OnInit {
   public cartTotal: any = this.store.select(store => store.cartList.total);
   products: Observable<Array<any>>;
   total: any;
+  noItemInCart = false;
 
   constructor(private store: Store<any>) {
   }
@@ -22,6 +23,9 @@ export class CartComponent implements OnInit {
     this.cartTotal.subscribe(currentTotal => {
       this.total = currentTotal;
     });
+    if (this.total === 0) {
+      this.noItemInCart = true;
+    }
   }
 
   onAdd(cartProductID){
@@ -34,5 +38,8 @@ export class CartComponent implements OnInit {
 
   onRemove(cartProductID){
     this.store.dispatch(new cartActions.RemoveItem(cartProductID));
+    if (this.total === 0) {
+      this.noItemInCart = true;
+    }
   }
 }

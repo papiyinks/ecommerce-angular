@@ -11,11 +11,11 @@
       <div class="mt-5">
         <p>{{ productData?.description }}</p>
         <div class="d-flex justify-content-center">
-          <a routerLink="/products/{{productID}}/edit">
+          <a *ngIf="productData?.ownerId === authUserId" routerLink="/products/{{productID}}/edit">
             <button type="button" class="btn btn-primary">Edit</button>
           </a>
             <button (click)="addProductToCart(productData)" type="button" class="btn btn-success cart-but mx-4">Add To Cart</button>
-            <button (click)="onDeleteProduct(productID)" type="button" class="btn btn-danger cart-but">Delete</button>
+            <button *ngIf="productData?.ownerId === authUserId" (click)="onDeleteProduct(productID)" type="button" class="btn btn-danger cart-but">Delete</button>
         </div>
       </div>
     </div>

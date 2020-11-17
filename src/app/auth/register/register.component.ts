@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  templateUrl: './register.component.html'
 })
 export class RegisterComponent implements OnInit {
   isLoading = false;
@@ -15,8 +13,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router,
-    private cookieService: CookieService
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -31,10 +28,8 @@ export class RegisterComponent implements OnInit {
 
     this.isLoading = true;
     this.authService.signup(email, password).subscribe(
-      resData => {
+      responseData => {
         this.isLoading = false;
-        this.cookieService.set( 'token', resData.idToken);
-        this.cookieService.set( 'userId', resData.localId);
         this.router.navigate(['/products']);
       },
       errorMessage => {

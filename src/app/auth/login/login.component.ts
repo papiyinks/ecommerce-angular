@@ -2,15 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from '../auth.service';
-
-import * as authActions from '../store/auth.action';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit {
   isLoading = false;
@@ -19,7 +15,6 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private cookieService: CookieService,
     private store: Store
   ) { }
 
@@ -35,12 +30,8 @@ export class LoginComponent implements OnInit {
 
     this.isLoading = true;
     this.authService.login(email, password).subscribe(
-      resData => {
+      responseData => {
         this.isLoading = false;
-        this.cookieService.set('token', resData.idToken);
-        this.cookieService.set('userId', resData.localId);
-        this.store.dispatch(new authActions.AuthToken(resData.idToken));
-        this.store.dispatch(new authActions.AuthUserId(resData.localId));
         this.router.navigate(['/products']);
       },
       errorMessage => {

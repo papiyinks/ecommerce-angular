@@ -11,10 +11,17 @@ import * as cartActions from '../cart/store/cart.action';
   styleUrls: ['./product-detail.component.css']
 })
 export class ProductDetailComponent implements OnInit {
+  private userData = JSON.parse(localStorage.getItem('userData'));
   productID: any;
   productData: any;
+  authUserId: any;
 
-  constructor(private prodService: ProductsService, private actRoute: ActivatedRoute, private router: Router, private store: Store) { }
+  constructor(
+    private prodService: ProductsService,
+    private actRoute: ActivatedRoute,
+    private router: Router,
+    private store: Store
+  ) { }
 
   ngOnInit(): void {
     this. productID = this.actRoute.snapshot.params['id'];
@@ -26,6 +33,7 @@ export class ProductDetailComponent implements OnInit {
       product => {
       this.productData = product;
     });
+    this.authUserId = this.userData.id;
   }
 
   onDeleteProduct(productID){
@@ -39,5 +47,6 @@ export class ProductDetailComponent implements OnInit {
     const putId = { id: this.productID };
     const dispacthedProduct = {...productData, ...putId };
     this.store.dispatch(new cartActions.AddToCart(dispacthedProduct));
+    alert('Item has been added to Cart');
   }
 }

@@ -36,6 +36,11 @@ html, body {
   margin-bottom: 30px;
 }
 
+.spinner-style {
+  text-align: center;
+  padding-top: 80px;
+}
+
 
 @media only screen and (min-width: 768px) {
   .junbo-bg {

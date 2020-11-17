@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
-import { CookieService } from 'ngx-cookie-service';
-
 interface ProductResponseData {
   name: string;
   brand: string;
@@ -15,25 +13,25 @@ interface ProductResponseData {
 
 @Injectable({ providedIn: 'root' })
 export class ProductsService {
-  constructor(private http: HttpClient, private cookieService: CookieService) {}
+  private userData = JSON.parse(localStorage.getItem('userData'));
+
+  constructor(private http: HttpClient) {}
 
   createProduct(name: string, brand: string, price: number, imageUrl: string, description: string) {
-    const token = this.cookieService.get('token');
-    const userId = this.cookieService.get('userId');
     return this.http
       .post<ProductResponseData>(
-        `https://papistore-angular.firebaseio.com/products.json?auth=${token}`,
+        `https://papistore-angular.firebaseio.com/products.json?auth=${this.userData._token}`,
         {
           name,
           brand,
           price,
           imageUrl,
           description,
-          ownerId: userId
+          ownerId: this.userData.id
         }
       )
       .pipe(
-        catchError(errorRes => {
+        catchError(errorResponse => {
           const errorMessage = 'An error occurred!';
           return throwError(errorMessage);
         })
@@ -45,7 +43,7 @@ export class ProductsService {
       .get<ProductResponseData>(
         'https://papistore-angular.firebaseio.com/products.json')
       .pipe(
-        catchError(errorRes => {
+        catchError(errorResponse => {
           const errorMessage = 'An error occurred!';
           return throwError(errorMessage);
         })
@@ -57,7 +55,7 @@ export class ProductsService {
       .get<ProductResponseData>(
         `https://papistore-angular.firebaseio.com/products/${productId}.json`)
       .pipe(
-        catchError(errorRes => {
+        catchError(errorResponse => {
           const errorMessage = 'An error occurred!';
           return throwError(errorMessage);
         })
@@ -65,10 +63,9 @@ export class ProductsService {
   }
 
   updateProduct(name: string, brand: string, price: number, imageUrl: string, description: string, productId: string) {
-    const token = this.cookieService.get('token');
     return this.http
       .patch<ProductResponseData>(
-        `https://papistore-angular.firebaseio.com/products/${productId}.json?auth=${token}`,
+        `https://papistore-angular.firebaseio.com/products/${productId}.json?auth=${this.userData._token}`,
           {
             name,
             brand,
@@ -78,7 +75,7 @@ export class ProductsService {
           }
         )
       .pipe(
-        catchError(errorRes => {
+        catchError(errorResponse => {
           const errorMessage = 'An error occurred!';
           return throwError(errorMessage);
         })
@@ -86,12 +83,11 @@ export class ProductsService {
   }
 
   deleteProduct(productId: string) {
-    const token = this.cookieService.get('token');
     return this.http
       .delete<ProductResponseData>(
-        `https://papistore-angular.firebaseio.com/products/${productId}.json?auth=${token}`)
+        `https://papistore-angular.firebaseio.com/products/${productId}.json?auth=${this.userData._token}`)
       .pipe(
-        catchError(errorRes => {
+        catchError(errorResponse => {
           const errorMessage = 'An error occurred!';
           return throwError(errorMessage);
         })

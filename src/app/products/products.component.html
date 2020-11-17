@@ -5,8 +5,8 @@
         <div class="caption-cont">
           <h1 class="caption-text">Find your desired product</h1>
           <p class="caption-para">To add new product, Please Register.</p>
-          <div>
-            <a routerLink="/products/new">
+          <div *ngIf="isAuthenticated">
+            <a routerLink="/products/new-product">
               <button type="button" class="btn btn-primary">Add New Product</button>
             </a>
           </div>

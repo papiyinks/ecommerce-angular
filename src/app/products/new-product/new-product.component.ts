@@ -4,11 +4,10 @@ import { Router } from '@angular/router';
 import { ProductsService } from '../products.service';
 
 @Component({
-  selector: 'app-new',
-  templateUrl: './new.component.html',
-  styleUrls: ['./new.component.css']
+  selector: 'app-new-product',
+  templateUrl: './new-product.component.html'
 })
-export class NewComponent implements OnInit {
+export class NewProductComponent implements OnInit {
   isLoading = false;
   error: string = null;
 

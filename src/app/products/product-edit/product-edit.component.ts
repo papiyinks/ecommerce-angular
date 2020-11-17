@@ -5,8 +5,7 @@ import { ProductsService } from '../products.service';
 
 @Component({
   selector: 'app-product-edit',
-  templateUrl: './product-edit.component.html',
-  styleUrls: ['./product-edit.component.css']
+  templateUrl: './product-edit.component.html'
 })
 export class ProductEditComponent implements OnInit {
   isLoading = false;
@@ -14,7 +13,11 @@ export class ProductEditComponent implements OnInit {
   productID: any;
   productData: any;
 
-  constructor(private prodService: ProductsService, private actRoute: ActivatedRoute, private router: Router) { }
+  constructor(
+    private prodService: ProductsService,
+    private actRoute: ActivatedRoute,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this. productID = this.actRoute.snapshot.params['id'];
@@ -43,7 +46,6 @@ export class ProductEditComponent implements OnInit {
     this.prodService.updateProduct(name, brand, price, imageUrl, description, this.productID).subscribe(
       resData => {
         this.router.navigate([`/products/${this.productID}`]);
-        // this.isLoading = false;
       },
       errorMessage => {
         this.error = errorMessage;

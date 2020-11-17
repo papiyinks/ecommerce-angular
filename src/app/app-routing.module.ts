@@ -6,10 +6,12 @@ import { ProductsComponent } from './products/products.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
 import { CartComponent } from './products/cart/cart.component';
-import { NewComponent } from './products/new/new.component';
+import { NewProductComponent } from './products/new-product/new-product.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
 import { CheckoutComponent } from './products/checkout/checkout.component';
+import { AuthGuard } from './auth/auth.guard';
+import { OrderComponent } from './products/order/order.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -17,11 +19,11 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent },
   {path: 'login', component: LoginComponent},
   {path: 'cart', component: CartComponent},
-  {path: 'checkout', component: CheckoutComponent},
-  // {path: 'cart', component: CartComponent},
-  {path: 'products/new', component: NewComponent},
+  {path: 'order', component: OrderComponent, canActivate: [AuthGuard]},
+  {path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard]},
+  {path: 'products/new-product', component: NewProductComponent, canActivate: [AuthGuard]},
   {path: 'products/:id', component: ProductDetailComponent},
-  {path: 'products/:id/edit', component: ProductEditComponent}
+  {path: 'products/:id/edit', component: ProductEditComponent, canActivate: [AuthGuard]}
 
 ];
 

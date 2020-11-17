@@ -1,10 +1,7 @@
 <div class="auth-cont">
-  <div *ngIf="isLoading" style="text-align: center; padding-top: 80px;">
+  <div *ngIf="isLoading" class="spinner-style">
     <app-loading-spinner></app-loading-spinner>
   </div>
-  <!-- <div class="alert alert-danger" role="alert" *ngIf="error">
-    {{ error }}
-  </div> -->
   <div *ngIf="!isLoading">
     <h1 class="auth-text">Add New Product</h1>
     <form #addForm="ngForm" (ngSubmit)="onSubmit(addForm)">

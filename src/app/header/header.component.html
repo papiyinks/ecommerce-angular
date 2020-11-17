@@ -21,7 +21,7 @@
         <a class="nav-link" routerLink="/cart">Cart</a>
       </li>
       <li *ngIf="isAuthenticated" routerLinkActive="active" class="nav-item mr-4">
-        <a class="nav-link" href="/" (click)="onLogout()">Logout</a>
+        <a class="nav-link" routerLink="/" (click)="onLogout()">Logout</a>
       </li>
     </ul>
   </div>

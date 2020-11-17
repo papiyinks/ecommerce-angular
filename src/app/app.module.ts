@@ -15,7 +15,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
 import { CartComponent } from './products/cart/cart.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
-import { NewComponent } from './products/new/new.component';
+import { NewProductComponent } from './products/new-product/new-product.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 import { ProductEditComponent } from './products/product-edit/product-edit.component';
 import * as fromApp from './store/app.reducer';
@@ -32,7 +32,7 @@ import { CheckoutComponent } from './products/checkout/checkout.component';
     LoginComponent,
     CartComponent,
     LoadingSpinnerComponent,
-    NewComponent,
+    NewProductComponent,
     ProductDetailComponent,
     ProductEditComponent,
     OrderComponent,
