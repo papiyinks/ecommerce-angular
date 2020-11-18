@@ -11,3 +11,17 @@
     </div>
   </div>
 </div>
+<div class="latest-prod-wrapper mb-5">
+  <div class="latest-cont">
+    <div>
+      <div class="latest-text">Latest Products</div>
+      <div class="image-grip">
+        <div *ngFor="let product of latestProducts.slice(-4); let i = index" class="image">
+          <a routerLink="/products/{{product?.id}}">
+            <img class="image" src="{{product?.imageUrl}}" alt="">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

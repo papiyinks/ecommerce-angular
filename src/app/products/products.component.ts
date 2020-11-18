@@ -15,7 +15,11 @@ export class ProductsComponent implements OnInit {
   isAuthenticated = false;
   public userSub: Subscription;
 
-  constructor(private prodService: ProductsService, private store: Store, private authService: AuthService) { }
+  constructor(
+    private prodService: ProductsService,
+    private store: Store,
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
     this.loadProducts();

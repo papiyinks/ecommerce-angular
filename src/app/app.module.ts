@@ -21,6 +21,7 @@ import { ProductEditComponent } from './products/product-edit/product-edit.compo
 import * as fromApp from './store/app.reducer';
 import { OrderComponent } from './products/order/order.component';
 import { CheckoutComponent } from './products/checkout/checkout.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { CheckoutComponent } from './products/checkout/checkout.component';
     ProductDetailComponent,
     ProductEditComponent,
     OrderComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
